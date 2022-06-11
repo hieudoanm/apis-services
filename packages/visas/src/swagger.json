@@ -1,0 +1,77 @@
+{
+  "components": {
+    "examples": {},
+    "headers": {},
+    "parameters": {},
+    "requestBodies": {},
+    "responses": {},
+    "schemas": {
+      "Visa": {
+        "properties": {
+          "requirement": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          }
+        },
+        "required": ["requirement", "country"],
+        "type": "object"
+      }
+    },
+    "securitySchemes": {}
+  },
+  "info": {
+    "title": "visas",
+    "version": "0.0.1",
+    "description": "Visas",
+    "license": {
+      "name": "MIT"
+    },
+    "contact": {
+      "name": "hieudoanm ",
+      "email": "hieumdoan@gmail.com"
+    }
+  },
+  "openapi": "3.0.0",
+  "paths": {
+    "/visas": {
+      "get": {
+        "operationId": "GetVisas",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/Visa"
+                      },
+                      "type": "array"
+                    },
+                    "total": {
+                      "type": "number",
+                      "format": "double"
+                    }
+                  },
+                  "required": ["data", "total"],
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Visas"],
+        "security": [],
+        "parameters": []
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+import { Controller, Get, Query, Route, Tags } from 'tsoa';
+import { ifDraws, ifLoses, ifWins } from './elo.service';
+import { Result } from './elo.enums';
+
+@Route('elo')
+export class EloController extends Controller {
+  @Tags('Elo')
+  @Get()
+  public calculate(
+    @Query() result: Result,
+    @Query() playerRating: number,
+    @Query() opponentRating: number
+  ): { newPlayerRating: number; newOpponentRating: number } {
+    if (result === Result.WIN) {
+      const newPlayerRating = ifWins(playerRating, opponentRating);
+      const newOpponentRating = ifLoses(opponentRating, playerRating);
+      return { newPlayerRating, newOpponentRating };
+    }
+    if (result === Result.DRAW) {
+      const newPlayerRating = ifDraws(playerRating, opponentRating);
+      const newOpponentRating = ifDraws(opponentRating, playerRating);
+      return { newPlayerRating, newOpponentRating };
+    }
+    if (result === Result.LOSE) {
+      const newPlayerRating = ifLoses(playerRating, opponentRating);
+      const newOpponentRating = ifWins(opponentRating, playerRating);
+      return { newPlayerRating, newOpponentRating };
+    }
+    return { newPlayerRating: playerRating, newOpponentRating: opponentRating };
+  }
+}

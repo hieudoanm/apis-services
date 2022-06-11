@@ -1,0 +1,5 @@
+# Linguist Detectable
+*.js linguist-detectable=false
+pre-commit linguist-detectable=false
+pre-push linguist-detectable=false
+Dockerfile linguist-detectable=false
