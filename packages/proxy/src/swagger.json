@@ -1,0 +1,193 @@
+{
+  "components": {
+    "examples": {},
+    "headers": {},
+    "parameters": {},
+    "requestBodies": {},
+    "responses": {},
+    "schemas": {
+      "OrderBy": {
+        "enum": ["24hVolume", "change", "listedAt", "marketCap", "price"],
+        "type": "string"
+      },
+      "OrderDirection": {
+        "enum": ["asc", "desc"],
+        "type": "string"
+      },
+      "Tag": {
+        "enum": [
+          "defi",
+          "stablecoin",
+          "nft",
+          "dex",
+          "exchange",
+          "staking",
+          "dao",
+          "meme",
+          "privacy",
+          "metaverse",
+          "gaming",
+          "wrapped",
+          "layer-1",
+          "layer-2"
+        ],
+        "type": "string"
+      },
+      "TimePeriod": {
+        "enum": ["1h", "3h", "12h", "24h", "7d", "30d", "3m", "1y", "3y", "5y"],
+        "type": "string"
+      },
+      "Tier": {
+        "enum": ["1", "2", "3"],
+        "type": "string"
+      },
+      "Record_string.number_": {
+        "properties": {},
+        "type": "object",
+        "description": "Construct a type with a set of properties K of type T"
+      },
+      "ForexResponse": {
+        "properties": {
+          "rates": {
+            "$ref": "#/components/schemas/Record_string.number_"
+          },
+          "date": {
+            "type": "string"
+          },
+          "base": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "number",
+            "format": "double"
+          },
+          "success": {
+            "type": "boolean"
+          }
+        },
+        "required": ["rates", "date", "base", "timestamp", "success"],
+        "type": "object"
+      }
+    },
+    "securitySchemes": {}
+  },
+  "info": {
+    "title": "proxy",
+    "version": "0.0.1",
+    "description": "Proxy",
+    "license": {
+      "name": "MIT"
+    },
+    "contact": {
+      "name": "hieudoanm ",
+      "email": "hieumdoan@gmail.com"
+    }
+  },
+  "openapi": "3.0.0",
+  "paths": {
+    "/api/coins": {
+      "get": {
+        "operationId": "GetCoins",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        },
+        "tags": ["Coins"],
+        "security": [],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 100,
+              "format": "double",
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "format": "double",
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "orderBy",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/OrderBy"
+            }
+          },
+          {
+            "in": "query",
+            "name": "orderDirection",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/OrderDirection"
+            }
+          },
+          {
+            "in": "query",
+            "name": "tags",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/Tag"
+            }
+          },
+          {
+            "in": "query",
+            "name": "timePeriod",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/TimePeriod"
+            }
+          },
+          {
+            "in": "query",
+            "name": "tier",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/Tier"
+            }
+          }
+        ]
+      }
+    },
+    "/api/forex": {
+      "get": {
+        "operationId": "GetForex",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForexResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Forex"],
+        "security": [],
+        "parameters": []
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ]
+}

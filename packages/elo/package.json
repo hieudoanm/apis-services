@@ -1,0 +1,47 @@
+{
+  "name": "elo",
+  "version": "0.0.1",
+  "description": "Elo",
+  "main": "dist/server.js",
+  "repository": "git@github.com:hieudoanm/apis-services.git",
+  "author": "hieudoanm <hieumdoan@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "engines": {
+    "node": "16",
+    "npm": "8",
+    "yarn": "1"
+  },
+  "scripts": {
+    "start": "node .",
+    "build": "tsc",
+    "build:dev": "webpack --mode=development",
+    "build:prod": "webpack --mode=production --node-env=production",
+    "dev": "kill-port 8080 && concurrently \"nodemon\" \"nodemon -x tsoa spec-and-routes\"",
+    "docs": "redoc-cli build ./src/swagger.json --output ./public/index.html --title \"Elo as a Service\"",
+    "test": "jest",
+    "watch": "webpack --watch"
+  },
+  "dependencies": {
+    "express": "^4.18.1",
+    "http-errors": "^2.0.0",
+    "serverless-http": "^3.0.1",
+    "swagger-ui-express": "^4.4.0",
+    "tsoa": "^4.1.0"
+  },
+  "devDependencies": {
+    "@types/http-errors": "^1.8.2",
+    "@types/jest": "^28.1.3",
+    "@types/swagger-ui-express": "^4.1.3",
+    "concurrently": "^7.2.1",
+    "jest": "^28.1.1",
+    "kill-port": "^2.0.0",
+    "nodemon": "^2.0.16",
+    "redoc-cli": "^0.13.16",
+    "ts-jest": "^28.0.5",
+    "ts-loader": "^9.3.0",
+    "typescript": "^4.7.3",
+    "webpack": "^5.73.0",
+    "webpack-cli": "^4.10.0"
+  }
+}
