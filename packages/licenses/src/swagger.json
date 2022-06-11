@@ -1,0 +1,128 @@
+{
+  "components": {
+    "examples": {},
+    "headers": {},
+    "parameters": {},
+    "requestBodies": {},
+    "responses": {},
+    "schemas": {
+      "Plate": {
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "license": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "number",
+                "format": "double"
+              }
+            ]
+          }
+        },
+        "required": ["type", "name", "license"],
+        "type": "object"
+      }
+    },
+    "securitySchemes": {}
+  },
+  "info": {
+    "title": "licenses",
+    "version": "0.0.1",
+    "description": "License Plates",
+    "license": {
+      "name": "MIT"
+    },
+    "contact": {
+      "name": "hieudoanm ",
+      "email": "hieumdoan@gmail.com"
+    }
+  },
+  "openapi": "3.0.0",
+  "paths": {
+    "/licenses": {
+      "get": {
+        "operationId": "GetPlates",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/Plate"
+                      },
+                      "type": "array"
+                    },
+                    "total": {
+                      "type": "number",
+                      "format": "double"
+                    }
+                  },
+                  "required": ["data", "total"],
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["License"],
+        "security": [],
+        "parameters": []
+      }
+    },
+    "/licenses/{id}": {
+      "get": {
+        "operationId": "GetPlate",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "plate": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/Plate"
+                        }
+                      ],
+                      "nullable": true
+                    }
+                  },
+                  "required": ["plate"],
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["License"],
+        "security": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ]
+}

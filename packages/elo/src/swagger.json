@@ -1,0 +1,94 @@
+{
+  "components": {
+    "examples": {},
+    "headers": {},
+    "parameters": {},
+    "requestBodies": {},
+    "responses": {},
+    "schemas": {
+      "Result": {
+        "enum": ["W", "D", "L"],
+        "type": "string"
+      }
+    },
+    "securitySchemes": {}
+  },
+  "info": {
+    "title": "elo",
+    "version": "0.0.1",
+    "description": "Elo",
+    "license": {
+      "name": "MIT"
+    },
+    "contact": {
+      "name": "hieudoanm ",
+      "email": "hieumdoan@gmail.com"
+    }
+  },
+  "openapi": "3.0.0",
+  "paths": {
+    "/api/elo": {
+      "get": {
+        "operationId": "Calculate",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "newOpponentRating": {
+                      "type": "number",
+                      "format": "double"
+                    },
+                    "newPlayerRating": {
+                      "type": "number",
+                      "format": "double"
+                    }
+                  },
+                  "required": ["newOpponentRating", "newPlayerRating"],
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Elo"],
+        "security": [],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "result",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Result"
+            }
+          },
+          {
+            "in": "query",
+            "name": "playerRating",
+            "required": true,
+            "schema": {
+              "format": "double",
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "opponentRating",
+            "required": true,
+            "schema": {
+              "format": "double",
+              "type": "number"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ]
+}
