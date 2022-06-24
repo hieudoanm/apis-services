@@ -1,3 +1,4 @@
+import { logger } from '@apis-services/shared';
 import app from './app';
 import http from 'http';
 import { HttpError } from 'http-errors';
@@ -35,11 +36,11 @@ const onError = (error: HttpError) => {
   // handle specific listen errors with friendly messages
   switch (error.code) {
     case 'EACCES':
-      console.error(bind + ' requires elevated privileges');
+      logger.error(bind + ' requires elevated privileges');
       process.exit(1);
       break;
     case 'EADDRINUSE':
-      console.error(bind + ' is already in use');
+      logger.error(bind + ' is already in use');
       process.exit(1);
       break;
     default:
@@ -50,7 +51,7 @@ const onError = (error: HttpError) => {
 const onListening = () => {
   const addr = server.address();
   const bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr?.port;
-  console.info(`Server is listening on ${bind}`);
+  logger.info(`Server is listening on ${bind}`);
 };
 
 const main = async () => {
@@ -59,7 +60,7 @@ const main = async () => {
   server.on('listening', onListening);
 };
 
-main().catch((error: Error) => console.error(error));
+main().catch((error: Error) => logger.error(error));
 
 process.on('unhandledRejection', (reason: string) => {
   // I just caught an unhandled promise rejection,
@@ -70,6 +71,6 @@ process.on('unhandledRejection', (reason: string) => {
 
 process.on('uncaughtException', (error: Error) => {
   // I just received an error that was never handled, time to handle it and then decide whether a restart is needed
-  console.error(error);
+  logger.error(error);
   process.exit(1);
 });

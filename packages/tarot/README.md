@@ -1,1 +1,0 @@
-# Tarot as a Service

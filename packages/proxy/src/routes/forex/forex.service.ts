@@ -1,4 +1,4 @@
-import { axiosGet } from '../../libs/axios';
+import { axiosGet } from '@apis-services/shared';
 import { ForexResponse } from './forex.types';
 
 const FIXER_KEY = process.env.FIXER_KEY || '';

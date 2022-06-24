@@ -1,7 +1,6 @@
+import { errorHandler, notFoundHandler } from '@apis-services/shared';
 import express, { Request, Response, urlencoded, json } from 'express';
 import swaggerUi from 'swagger-ui-express';
-import { errorHandler } from './middlewares/error';
-import { notFoundHandler } from './middlewares/not-found';
 import { RegisterRoutes } from './routes';
 
 const app = express();

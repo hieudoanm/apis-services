@@ -1,4 +1,4 @@
-import { axiosGet } from '../../libs/axios';
+import { axiosGet } from '@apis-services/shared';
 import { OrderBy, OrderDirection, Tag, Tier, TimePeriod } from './coins.enums';
 
 const COIN_RANKING_KEY = process.env.COIN_RANKING_KEY || '';

@@ -1,19 +1,17 @@
 import supertest from 'supertest';
 import app from './app';
 
+const testCases = [
+  '/api/docs',
+  '/api/coins',
+  '/api/forex',
+  '/api/tarot',
+  '/api/tarot/minor-wands-king',
+];
+
 describe('app', () => {
-  it('GET /api/docs has status code = 200', async () => {
-    const response = await supertest(app).get('/api/docs');
-    expect(response.statusCode).toBe(200);
-  });
-
-  it('GET /api/coins has status code = 200', async () => {
-    const response = await supertest(app).get('/api/coins');
-    expect(response.statusCode).toBe(200);
-  });
-
-  it('GET /api/forex has status code = 200', async () => {
-    const response = await supertest(app).get('/api/forex');
+  test.each(testCases)('GET %s has status code = 200', async (url) => {
+    const response = await supertest(app).get(url);
     expect(response.statusCode).toBe(200);
   });
 });

@@ -1,14 +1,15 @@
-import axios from 'axios';
 import { getCoins } from './coins.service';
 
-jest.mock('axios');
+jest.mock('@apis-services/shared', () => {
+  const mockAxiosGet = jest.fn().mockResolvedValueOnce({ status: 'success' });
+  return {
+    axiosGet: mockAxiosGet,
+  };
+});
 
 describe('forex service', () => {
   describe('getVisas', () => {
     it('should return visas', async () => {
-      jest
-        .spyOn(axios, 'get')
-        .mockResolvedValueOnce({ data: { status: 'success' } });
       const coinsReponse = await getCoins({});
       expect(coinsReponse).toEqual({ status: 'success' });
     });
