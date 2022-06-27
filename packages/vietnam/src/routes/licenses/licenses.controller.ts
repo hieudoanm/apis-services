@@ -14,10 +14,10 @@ export class LicensesController extends Controller {
   @Tags('License')
   @Get(':id')
   public getPlate(@Path() id: string | number): { plate: Plate | null } {
-    const plate =
+    const plateById =
       plates.find(
         (plate: Plate) => plate.license.toString() === id.toString()
       ) || null;
-    return { plate };
+    return { plate: plateById };
   }
 }

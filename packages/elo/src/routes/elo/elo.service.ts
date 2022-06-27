@@ -33,8 +33,7 @@ const processRating = (
 ) => {
   const difference = actualScore - odds;
   const previousKFactor = getKFactor(previousRating);
-  const rating = Math.round(previousRating + previousKFactor * difference);
-  return rating;
+  return Math.round(previousRating + previousKFactor * difference);
 };
 
 export const ifWins = (rating: number, opponentRating: number) => {

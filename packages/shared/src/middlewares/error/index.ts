@@ -3,7 +3,7 @@ import { ValidateError } from 'tsoa';
 
 export const errorHandler = (
   error: Error | ValidateError | undefined,
-  request: Request,
+  _request: Request,
   response: Response,
   next: NextFunction
 ): Response | void => {

@@ -14,8 +14,8 @@ export class TarotController extends Controller {
   @Tags('Tarot')
   @Get(':id')
   public getCard(@Path() id: string): { card: Card | null } {
-    const card = cards.find((card: Card) => card.id === id) || null;
-    return { card };
+    const cardById = cards.find((card: Card) => card.id === id) || null;
+    return { card: cardById };
   }
 
   @Tags('Tarot')

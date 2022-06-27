@@ -1,5 +1,6 @@
 import { axiosGet } from '@apis-services/shared';
 import { OrderBy, OrderDirection, Tag, Tier, TimePeriod } from './coins.enums';
+import { CoinsResponse } from './coins.types';
 
 const COIN_RANKING_KEY = process.env.COIN_RANKING_KEY || '';
 
@@ -19,7 +20,7 @@ export const getCoins = async ({
   tags?: Tag;
   timePeriod?: TimePeriod;
   tier?: Tier;
-}) => {
+}): Promise<CoinsResponse> => {
   const query = new URLSearchParams();
   query.set('limit', limit.toString());
   query.set('offset', offset.toString());
@@ -30,5 +31,5 @@ export const getCoins = async ({
   query.set('tier', tier);
   const url = `https://api.coinranking.com/v2/coins?${query.toString()}`;
   const configs = { headers: { 'x-access-token': COIN_RANKING_KEY } };
-  return await axiosGet(url, configs);
+  return axiosGet(url, configs);
 };

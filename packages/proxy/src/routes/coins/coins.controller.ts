@@ -1,6 +1,7 @@
 import { Controller, Get, Query, Route, Tags } from 'tsoa';
 import { Tag, TimePeriod, Tier, OrderBy, OrderDirection } from './coins.enums';
 import { getCoins } from './coins.service';
+import { CoinsResponse } from './coins.types';
 
 @Route('api/coins')
 @Tags('Coins')
@@ -15,8 +16,8 @@ export class CoinsController extends Controller {
     @Query('tags') tags: Tag = Tag.LAYER_1,
     @Query('timePeriod') timePeriod: TimePeriod = TimePeriod.HOUR_24,
     @Query('tier') tier: Tier = Tier.TIER_1
-  ): Promise<any> {
-    return await getCoins({
+  ): Promise<CoinsResponse> {
+    const coinsOptions = {
       limit,
       offset,
       orderBy,
@@ -24,6 +25,7 @@ export class CoinsController extends Controller {
       tags,
       timePeriod,
       tier,
-    });
+    };
+    return getCoins(coinsOptions);
   }
 }

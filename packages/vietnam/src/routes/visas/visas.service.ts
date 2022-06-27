@@ -7,7 +7,7 @@ export const getVisas = async (): Promise<Visa[]> => {
   const html: string = await axiosGet<string>(url);
   const $ = load(html);
 
-  const visas = $('table#psprt-dashboard-table tbody tr')
+  return $('table#psprt-dashboard-table tbody tr')
     .get()
     .map((row) => {
       const $row = $(row);
@@ -16,6 +16,4 @@ export const getVisas = async (): Promise<Visa[]> => {
 
       return { country, requirement };
     });
-
-  return visas;
 };

@@ -7,6 +7,6 @@ import { ForexResponse } from './forex.types';
 export class ForexController extends Controller {
   @Get()
   public async getForex(): Promise<ForexResponse> {
-    return await getForex();
+    return getForex();
   }
 }

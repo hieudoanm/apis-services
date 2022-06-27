@@ -6,6 +6,141 @@
     "requestBodies": {},
     "responses": {},
     "schemas": {
+      "CoinsStats": {
+        "properties": {
+          "total24hVolume": {
+            "type": "string"
+          },
+          "totalMarketCap": {
+            "type": "string"
+          },
+          "totalExchanges": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalMarkets": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalCoins": {
+            "type": "number",
+            "format": "double"
+          },
+          "total": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "required": [
+          "total24hVolume",
+          "totalMarketCap",
+          "totalExchanges",
+          "totalMarkets",
+          "totalCoins",
+          "total"
+        ],
+        "type": "object"
+      },
+      "Coin": {
+        "properties": {
+          "btcPrice": {
+            "type": "string"
+          },
+          "coinrankingUrl": {
+            "type": "string"
+          },
+          "lowVolume": {
+            "type": "boolean"
+          },
+          "sparkline": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "rank": {
+            "type": "number",
+            "format": "double"
+          },
+          "change": {
+            "type": "string"
+          },
+          "tier": {
+            "type": "number",
+            "format": "double"
+          },
+          "listedAt": {
+            "type": "number",
+            "format": "double"
+          },
+          "price": {
+            "type": "string"
+          },
+          "marketCap": {
+            "type": "string"
+          },
+          "iconUrl": {
+            "type": "string"
+          },
+          "color": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "symbol": {
+            "type": "string"
+          },
+          "uuid": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "btcPrice",
+          "coinrankingUrl",
+          "lowVolume",
+          "sparkline",
+          "rank",
+          "change",
+          "tier",
+          "listedAt",
+          "price",
+          "marketCap",
+          "iconUrl",
+          "color",
+          "name",
+          "symbol",
+          "uuid"
+        ],
+        "type": "object"
+      },
+      "CoinsData": {
+        "properties": {
+          "coins": {
+            "items": {
+              "$ref": "#/components/schemas/Coin"
+            },
+            "type": "array"
+          },
+          "stats": {
+            "$ref": "#/components/schemas/CoinsStats"
+          }
+        },
+        "required": ["coins", "stats"],
+        "type": "object"
+      },
+      "CoinsResponse": {
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/CoinsData"
+          },
+          "status": {
+            "type": "string"
+          }
+        },
+        "required": ["data", "status"],
+        "type": "object"
+      },
       "OrderBy": {
         "enum": ["24hVolume", "change", "listedAt", "marketCap", "price"],
         "type": "string"
@@ -450,7 +585,9 @@
             "description": "Ok",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/CoinsResponse"
+                }
               }
             }
           }

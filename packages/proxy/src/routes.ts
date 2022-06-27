@@ -23,6 +23,79 @@ import * as express from 'express';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 
 const models: TsoaRoute.Models = {
+  CoinsStats: {
+    dataType: 'refAlias',
+    type: {
+      dataType: 'nestedObjectLiteral',
+      nestedProperties: {
+        total24hVolume: { dataType: 'string', required: true },
+        totalMarketCap: { dataType: 'string', required: true },
+        totalExchanges: { dataType: 'double', required: true },
+        totalMarkets: { dataType: 'double', required: true },
+        totalCoins: { dataType: 'double', required: true },
+        total: { dataType: 'double', required: true },
+      },
+      validators: {},
+    },
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  Coin: {
+    dataType: 'refAlias',
+    type: {
+      dataType: 'nestedObjectLiteral',
+      nestedProperties: {
+        btcPrice: { dataType: 'string', required: true },
+        coinrankingUrl: { dataType: 'string', required: true },
+        lowVolume: { dataType: 'boolean', required: true },
+        sparkline: {
+          dataType: 'array',
+          array: { dataType: 'string' },
+          required: true,
+        },
+        rank: { dataType: 'double', required: true },
+        change: { dataType: 'string', required: true },
+        tier: { dataType: 'double', required: true },
+        listedAt: { dataType: 'double', required: true },
+        price: { dataType: 'string', required: true },
+        marketCap: { dataType: 'string', required: true },
+        iconUrl: { dataType: 'string', required: true },
+        color: { dataType: 'string', required: true },
+        name: { dataType: 'string', required: true },
+        symbol: { dataType: 'string', required: true },
+        uuid: { dataType: 'string', required: true },
+      },
+      validators: {},
+    },
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  CoinsData: {
+    dataType: 'refAlias',
+    type: {
+      dataType: 'nestedObjectLiteral',
+      nestedProperties: {
+        coins: {
+          dataType: 'array',
+          array: { dataType: 'refAlias', ref: 'Coin' },
+          required: true,
+        },
+        stats: { ref: 'CoinsStats', required: true },
+      },
+      validators: {},
+    },
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  CoinsResponse: {
+    dataType: 'refAlias',
+    type: {
+      dataType: 'nestedObjectLiteral',
+      nestedProperties: {
+        data: { ref: 'CoinsData', required: true },
+        status: { dataType: 'string', required: true },
+      },
+      validators: {},
+    },
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
   OrderBy: {
     dataType: 'refEnum',
     enums: ['24hVolume', 'change', 'listedAt', 'marketCap', 'price'],
