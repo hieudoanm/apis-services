@@ -4,6 +4,8 @@ import swaggerUi from 'swagger-ui-express';
 import { RegisterRoutes } from './routes';
 
 const app = express();
+app.use(json());
+app.use(urlencoded({ extended: true }));
 
 RegisterRoutes(app);
 
@@ -11,8 +13,6 @@ app.get('/api/docs', swaggerUi.serve, async (_req: Request, res: Response) => {
   return res.send(swaggerUi.generateHTML(await import('./swagger.json')));
 });
 
-app.use(json());
-app.use(urlencoded({ extended: true }));
 app.use(errorHandler);
 app.use(notFoundHandler);
 
