@@ -6,6 +6,11 @@
   "author": "hieudoanm <hieumdoan@gmail.com>",
   "license": "MIT",
   "private": true,
+  "engines": {
+    "node": ">= 14",
+    "npm": ">= 8",
+    "yarn": "1"
+  },
   "scripts": {
     "build:elo": "yarn workspace @apis-services/elo build",
     "build:proxy": "yarn workspace @apis-services/proxy build",
