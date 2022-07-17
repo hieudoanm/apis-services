@@ -1,15 +1,19 @@
-name: CI
+name: Deploy
 
 on:
   push:
-    branches: [master]
+    branches:
+      - master
+      - 'hotfix/**'
+      - 'feature/**'
+      - 'renovate/**'
 
 jobs:
   github-actions:
     strategy:
       matrix:
         node-version: [18.x, 16.x, 14.x]
-        os: [macos-latest, ubuntu-latest, windows-latest]
+        os: [ubuntu-latest, macos-latest, windows-latest]
     name: Node.js ${{ matrix.node-version }} ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     steps:
@@ -20,7 +24,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: Install Dependencies
-        run: yarn install
+        run: yarn install --network-timeout 86400000
       - name: Build Production
         run: yarn build
       - name: Unit Test
