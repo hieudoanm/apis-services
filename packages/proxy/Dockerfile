@@ -1,4 +1,4 @@
-FROM node:16 as build
+FROM node:18 as build
 
 LABEL author hieudoanm
 
@@ -6,7 +6,7 @@ COPY . .
 
 RUN yarn install --frozen-lockfile && yarn build
 
-FROM node:16-alpine
+FROM node:18-alpine
 
 USER node
 
