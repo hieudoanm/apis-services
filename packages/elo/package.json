@@ -35,8 +35,8 @@
   "devDependencies": {
     "@types/compression": "1.7.2",
     "@types/cors": "2.8.12",
-    "@typescript-eslint/eslint-plugin": "5.30.7",
-    "@typescript-eslint/parser": "5.30.7",
+    "@typescript-eslint/eslint-plugin": "5.31.0",
+    "@typescript-eslint/parser": "5.31.0",
     "@webpack-cli/generators": "2.5.0",
     "eslint": "8.20.0",
     "json2yaml": "1.1.0",
