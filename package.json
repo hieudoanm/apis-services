@@ -1,0 +1,40 @@
+{
+  "name": "api-services",
+  "version": "0.0.1",
+  "description": "API as a Services",
+  "repository": "git@github.com:hieudoanm/apis-services.git",
+  "author": "hieudoanm <hieumdoan@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "engines": {
+    "node": ">= 14",
+    "npm": ">= 8",
+    "yarn": "1"
+  },
+  "scripts": {
+    "build:elo": "yarn workspace elo build",
+    "build:proxy": "yarn workspace proxy build",
+    "build:vietnam": "yarn workspace vietnam build",
+    "build": "yarn build:elo && yarn build:proxy && yarn build:vietnam",
+    "dev:elo": "yarn workspace elo dev",
+    "dev:proxy": "yarn workspace proxy dev",
+    "dev:vietnam": "yarn workspace vietnam dev",
+    "dev": "concurrently --kill-others-on-fail \"yarn dev:elo\" \"yarn dev:proxy\" \"yarn dev:vietnam\"",
+    "test:elo": "yarn workspace elo test",
+    "test:proxy": "yarn workspace proxy test",
+    "test:vietnam": "yarn workspace vietnam test",
+    "test": "yarn test:elo && yarn test:proxy && yarn test:vietnam",
+    "lint": "eslint . --fix --ext .ts"
+  },
+  "devDependencies": {
+    "@nrwl/nx-cloud": "latest",
+    "concurrently": "7.3.0",
+    "husky": "8.0.1",
+    "nx": "14.4.3",
+    "prettier": "2.7.1",
+    "pretty-quick": "3.1.3"
+  },
+  "workspaces": [
+    "services/*"
+  ]
+}

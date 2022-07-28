@@ -1,0 +1,18 @@
+version: '3.9'
+
+services:
+  elo:
+    build: ./services/elo
+    container_name: elo
+    ports:
+      - '8081:8080'
+  proxy:
+    build: ./services/proxy
+    container_name: proxy
+    ports:
+      - '8082:8080'
+  vietnam:
+    build: ./services/vietnam
+    container_name: vietnam
+    ports:
+      - '8083:8080'
