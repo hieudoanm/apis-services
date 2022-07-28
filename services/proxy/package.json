@@ -45,7 +45,7 @@
     "@webpack-cli/generators": "2.5.0",
     "eslint": "8.20.0",
     "json2yaml": "1.1.0",
-    "redoc-cli": "0.13.16",
+    "redoc-cli": "0.13.17",
     "ts-loader": "9.3.1",
     "ts-node": "10.9.1",
     "webpack": "5.74.0",
